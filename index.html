@@ -1,0 +1,98 @@
+<!doctype HTML>
+<HTML>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-2" />    
+<title> We need potato </title>
+<link rel="stylesheet" type="text/css" href="styl.css">
+</head>
+<body id="obrazovka">
+
+<audio autoplay="autoplay" id="uvodhudba" loop="loop">
+<source src="weneedpotato.ogg" type="audio/ogg" />
+</audio>
+
+<div id="hra" class="velkyobdlznik">
+
+<div id="abovescreen">
+
+<span id="playtimespan"></span>
+
+
+</div>
+
+<canvas id="hlavnaObr" width="600" height="400">
+</canvas>
+
+<div id="resourcesdiv">
+
+
+
+<img src="level1.png" id="lvl1">
+
+ <img src="pentagrambox.png" id="pentagrambox">
+ <img src="tempfloatingisland.png" id="tempfloatingisland"/>
+
+
+
+</div>
+
+<img src="mutebutton.png" alt="Teh mute button" onClick="muteButton();"/>
+
+</div>
+
+<div id="vyhra" class="velkyobdlznik">
+ <h2>Congratulations.</h2>
+ <div>
+  You have found the potato, and saved the world.
+ </div>
+ <div>
+ It took you <span id="endtime"> </span> seconds and cost the world the equivalent of $<span id="endscore"></span> .
+
+ </div>
+ <div id="esteRazW" onClick="moveLevelUp()" class="tlacidlo">Play again?</div>
+ <img src="mutebutton.png" alt="Teh mute button" onClick="muteButton();"/>
+</div>
+
+<div id="prehra" class="velkyobdlznik">
+ <h2> Game over </h2>
+ <div> You have failed. <div onClick="tryagain()" class="tlacidlo">Try again from last checkpoint? </div></div>
+
+ <div id="esteRazL" onClick="moveLevelUp()" class="tlacidlo">Play again?</div>
+ <img src="mutebutton.png" alt="Teh mute button" onClick="muteButton();"/>
+</div>
+
+<div id="introMenu" class="velkyobdlznik">
+ <h1>We need potato </h1>
+ <img src="tempfloatingisland.png" alt="pl0xz0rz"/>
+ <div id="newGameStart" class="tlacidlo" onClick="magicPushbutton()"> Play </div>
+ <div id="showStory" class="tlacidlo" onClick="zobrazPribeh()"> Story</div>
+ <img src="mutebutton.png" alt="Teh mute button" onClick="muteButton();"/>
+</div>
+
+<div id="story" class="velkyobdlznik">
+<h2>Story:</h2>
+<div id="storyContents"> Once upon a time, something has happened. The potato has disappeared. The most important potato in the world. You have to get it. At any cost. </div>
+<div id="storyLevelUp" onClick="moveLevelUp()" class="tlacidlo">Back</div>
+
+ <img src="mutebutton.png" alt="Teh mute button" onClick="muteButton();"/>
+</div>
+
+<script src="jquery.js">
+</script>
+<script src="vec2.js">
+</script>
+<script src="hittest.js">
+</script>
+<script src="aimath.js">
+</script>
+<script src="enterFrame.js">
+</script>
+<script src="nacitajLevel.js">
+</script>
+<script src="ingameObjects.js">
+</script>
+<script type="text/javascript" src="globalvars.js">
+</script>
+ 
+</body>
+</HTML>
