@@ -117,6 +117,41 @@ function FloatingIsland(x,y,type){
 	
 }
 
+function Turret(x,y){
+        this.x = x;
+        this.y = y;
+
+}
+
+function Powerup(x,y,t){
+	this.x = x;
+	this.y = y;
+	
+	this.oy = y;
+	
+	this.vy = 2;
+	
+	this.width = widths[t];
+	this.height = heights[t];
+	
+	this.eaten = false;
+	
+	this.img = imgs[t];
+	
+	this.render = render;
+	function render(){
+		if(!this.eaten){
+			obdl.drawImage(this.img,this.x - camera.x,this.y - camera.y);
+		} 
+	}
+	
+	this.updateFrame = updateFrame;
+	function updateFrame(){
+		this.y += this.vy;
+		this.vy -= (this.y -this.oy) * .2;
+	}
+}
+
 var imgs = [];
 var widths = [];
 var heights = [];
@@ -127,4 +162,7 @@ heights[0] = 11;
 imgs[1] = document.getElementById("pentagrambox");
 widths[1] = 157;
 heights[1] = 157;
+imgs[2] = document.getElementById("spud");
+widths[2] = 157;
+heights[2] = 157;
 

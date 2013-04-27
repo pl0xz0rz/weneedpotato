@@ -31,11 +31,17 @@ function nacitajLevel(x,y,map,xs,ys){
 				var a =new FloatingIsland(((i / 4) % x )* xscale,Math.floor(i / (4 * x) )* yscale,0);
 				displayObjects.push(a);
 				walls.push(a);
+				var alu = new aabbcorner(a.x,a.y,a);
+				var ard = new aabbcorner(a.x + a.width,a.y + a.height,a); 
+				wallssorted.push(alu); wallssorted.push(ard);	
 			break;
 			case 0x1f1f1f:
 				var a =new FloatingIsland(((i / 4) % x )* xscale,Math.floor(i / (4 * x) )* yscale,1);
 				displayObjects.push(a);
 				walls.push(a);	
+				var alu = new aabbcorner(a.x,a.y,a);
+				var ard = new aabbcorner(a.x + a.width,a.y + a.height,a); 
+				wallssorted.push(alu); wallssorted.push(ard);
 			break;
 			case 0xFF0000:
 				var a =new HeroFairy(((i / 4) % x  + .5)* xscale,Math.floor(i / (4 * x) )* yscale,10,.1);
@@ -48,6 +54,11 @@ function nacitajLevel(x,y,map,xs,ys){
 				displayObjects.push(a);		
 				fairies.push(a);			
 			break;*/
+			case 0xff01ff:
+				var a = new Powerup(((i / 4) % x )* xscale+1,Math.floor(i / (4 * x) )* yscale,2);
+				displayObjects.push(a);		
+				potato = a;			
+			break;
 		}
 	}
 	zapniHru();
@@ -65,5 +76,5 @@ function destroyOldGame(){
 	protagonist = null;
 	stuff = new Array();
 	bezi = false;
-	
+	displayObjects = new Array();
 }

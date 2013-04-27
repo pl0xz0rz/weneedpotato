@@ -33,6 +33,10 @@ var camera = new AxisAlignedBoundingBox(0,0,600,400);
 var playtime;
 
 var walls = new Array();
+var wallssorted = new BST2(1000);
+var hittestArray = new Array();
+
+var potato;
 
 $(document).ready(function(){
 	$(window).keydown(function(event){

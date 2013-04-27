@@ -41,8 +41,13 @@ function updateCam(){
 
 function collisionDetection(){
 	for (var i=0;i<stuff.length;i++){
-		for (var j=0;j<walls.length;j++){
-			narrowPhase(stuff[i].po,walls[j],0);
+		var aoc = wallssorted.hittestAABB(stuff[i].po,hittestArray);
+//		console.log(aoc);
+		for (var j=0;j<aoc;j++){
+			if(narrowPhase(stuff[i].po,hittestArray[j].box,0)) stuff[i].canJump = 8;
+		/*	console.log(hittestArray[j].box);
+			console.log(aoc);
+			console.log(stuff[i].x);*/
 		}
 	}
 
@@ -71,7 +76,7 @@ function enterFrame(){
 
 	camera.x = protagonist.x - 300;
 	camera.y = protagonist.y - 200;
-
+  wallssorted.sort();
  }
  t=setTimeout(function(){enterFrame()},12);
 }
