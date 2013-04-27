@@ -44,16 +44,17 @@ function nacitajLevel(x,y,map,xs,ys){
 				wallssorted.push(alu); wallssorted.push(ard);
 			break;
 			case 0xFF0000:
-				var a =new HeroFairy(((i / 4) % x  + .5)* xscale,Math.floor(i / (4 * x) )* yscale,10,.1);
+				var a =new HeroFairy(((i / 4) % x  + .5)* xscale,Math.floor(i / (4 * x) )* yscale,10,.1,20,20);
 				displayObjects.push(a);		
 				stuff.push(a);
 				protagonist = a;
 			break;
-			/*case 0x0000FF:
-				var a =new Fairy(((i / 4) % x )* xscale+1,Math.floor(i / (4 * x) )* yscale);
+			case 0x0000FF:
+				var a =new Turret(((i / 4) % x )* xscale+1,Math.floor(i / (4 * x) )* yscale,3,15,15);
 				displayObjects.push(a);		
-				fairies.push(a);			
-			break;*/
+				enemies.push(a);
+				stuff.push(a);			
+			break;
 			case 0xff01ff:
 				var a = new Powerup(((i / 4) % x )* xscale+1,Math.floor(i / (4 * x) )* yscale,2);
 				displayObjects.push(a);		

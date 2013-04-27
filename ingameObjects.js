@@ -64,11 +64,15 @@ function PhysicsObject(x,y,vx,vy,width,height){
 
 }
 
-function HeroFairy(x,y,r,str){
+function HeroFairy(x,y,r,str,hp,mana){
   this.po = new PhysicsObject(x-r,y-r,0,0,r*2,r*2);
 this.x = x;
 this.y = y;
 this.str = str;
+this.hp = hp;
+this.maxhp = hp;
+this.mana = mana;
+this.maxmana = mana;
   this.render = render;
   function render(){
 		obdl.beginPath();
@@ -99,6 +103,10 @@ this.str = str;
       this.po.svy += dy * pa;
     }
   }
+  this.action = action;
+  function action(x,y){
+
+  }
 }
 
 function FloatingIsland(x,y,type){
@@ -117,10 +125,36 @@ function FloatingIsland(x,y,type){
 	
 }
 
-function Turret(x,y){
-        this.x = x;
-        this.y = y;
+function Turret(x,y,t,weapon,hp,mana){
+	this.t = t;
+	this.width = widths[t];
+	this.height = heights[t];
+        this.img = imgs[t];
+  this.po = new PhysicsObject(x,y,0,0,this.width,this.height);
+this.x = x;
+this.y = y;
+this.hp = hp;
+this.maxhp = hp;
+this.mana = mana;
+this.maxmana = mana;
+  this.render = render;
+  function render(){
+		obdl.drawImage(this.img,this.x - camera.x,this.y - camera.y);
+  }
+  this.updateFrame = updateFrame;
+  function updateFrame(){
+    this.po.updateFrame();
+    this.x = this.po.x + this.po.width / 2;
+    this.y = this.po.y + this.po.height / 2;
+  }
+  this.seek = seek;
+  function seek(x,y){
 
+  }
+  this.action = action;
+  function action(x,y,skill){
+
+  }
 }
 
 function Powerup(x,y,t){
@@ -129,10 +163,14 @@ function Powerup(x,y,t){
 	
 	this.oy = y;
 	
-	this.vy = 2;
+
 	
+
+
 	this.width = widths[t];
 	this.height = heights[t];
+
+	this.vy = 3;
 	
 	this.eaten = false;
 	
@@ -142,6 +180,8 @@ function Powerup(x,y,t){
 	function render(){
 		if(!this.eaten){
 			obdl.drawImage(this.img,this.x - camera.x,this.y - camera.y);
+		this.y += this.vy;
+		this.vy -= (this.y -this.oy) * .05;
 		} 
 	}
 	
@@ -165,4 +205,7 @@ heights[1] = 157;
 imgs[2] = document.getElementById("spud");
 widths[2] = 157;
 heights[2] = 157;
+imgs[3] = document.getElementById("tripod");
+widths[3] = 100;
+heights[3] = 100;
 

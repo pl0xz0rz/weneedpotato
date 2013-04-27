@@ -31,10 +31,14 @@ var ymouse;
 var camera = new AxisAlignedBoundingBox(0,0,600,400);
 
 var playtime;
+var inventory = new Array(10);
+var hitpoints;
+var mana;
 
 var walls = new Array();
 var wallssorted = new BST2(1000);
 var hittestArray = new Array();
+var enemies = new Array();
 
 var potato;
 
@@ -47,7 +51,7 @@ $(document).ready(function(){
 	}).keyup(function(event){
 		kbMap[event.which] = false;
 	}).mouseup(function(event){
-		//if(bezi) protagonist.vystrel();
+		if(bezi) protagonist.action(xmouse + camera.x,ymouse + camera.y);
 	}).mousemove(function(event){
 		xmouse = event.clientX - hlavnaObr.offsetLeft;
 		ymouse = event.clientY - hlavnaObr.offsetTop;
@@ -99,4 +103,8 @@ function muteButton(){
 
 function switchTrack(to){
 
+}
+
+function win(){
+vyhraj();
 }

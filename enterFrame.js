@@ -44,14 +44,15 @@ function collisionDetection(){
 		var aoc = wallssorted.hittestAABB(stuff[i].po,hittestArray);
 //		console.log(aoc);
 		for (var j=0;j<aoc;j++){
-			if(narrowPhase(stuff[i].po,hittestArray[j].box,0)) stuff[i].canJump = 8;
+			if(narrowPhase(stuff[i].po,hittestArray[j].box,0)) stuff[i].hp -= 1;
 		/*	console.log(hittestArray[j].box);
 			console.log(aoc);
 			console.log(stuff[i].x);*/
 		}
 	}
 
-
+	if(aabb(protagonist.po.x,protagonist.po.y,protagonist.po.width,protagonist.po.height,potato.x,potato.y, potato.width, potato.height)) 
+win();
 }
 
 function removeGarbage(){
@@ -71,8 +72,9 @@ function enterFrame(){
 	stuff[i].vy *= .995;	
 
 	}
-  protagonist.seek(xmouse + camera.x, ymouse + camera.y);
-  if(hitpoints <= 0) prehraj();
+  aiLoop();
+  hitpointspan.innerHTML = protagonist.hp;
+  if(protagonist.hp <= 0) prehraj();
 
 	camera.x = protagonist.x - 300;
 	camera.y = protagonist.y - 200;
