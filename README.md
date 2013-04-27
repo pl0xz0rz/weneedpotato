@@ -6,6 +6,6 @@ weneedpotato
 
 This is my LD26 game, We Need Potato
 
-So far, it has graphics from my LD25 game, and only 1 level, that is unwinnable.
+So far, it has graphics from my LD25 game, and only 1 level.
 
-EDIT: Find the potato to win
+Get the potato without touching walls. Now featuring some tripods.
