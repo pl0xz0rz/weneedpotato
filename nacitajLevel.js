@@ -15,7 +15,16 @@ function nacitajLevel(x,y,map,xs,ys){
 	cax = 0;
 	cay = 0;
 
-        playtime = 0;
+	bulletAmount = 0;
+
+	checkpoints = new Array();
+	checkpointAmount = 0;
+
+	enemies = new Array();
+	food = new Array();
+	gates = new Array();
+
+	score -= 200;
 
 	obdl.drawImage(map,0,0);
 	var mapData = obdl.getImageData(0,0,x,y);
@@ -45,12 +54,15 @@ function nacitajLevel(x,y,map,xs,ys){
 			break;
 			case 0xFF0000:
 				var a =new HeroFairy(((i / 4) % x  + .5)* xscale,Math.floor(i / (4 * x) )* yscale,10,.1,20,20);
+				a.po.y += 87;
 				displayObjects.push(a);		
 				stuff.push(a);
 				protagonist = a;
+				checkpoints[0] = new Checkpoint(a.x,a.y + 87,4);
+				displayObjects.push(checkpoints[0]);
 			break;
 			case 0x0000FF:
-				var a =new Turret(((i / 4) % x )* xscale+1,Math.floor(i / (4 * x) )* yscale,3,15,15);
+				var a =new Turret(((i / 4) % x + .25)* xscale+1,Math.floor(i / (4 * x) )* yscale,3,15,15);
 				displayObjects.push(a);		
 				enemies.push(a);
 				stuff.push(a);			
@@ -59,6 +71,29 @@ function nacitajLevel(x,y,map,xs,ys){
 				var a = new Powerup(((i / 4) % x )* xscale+1,Math.floor(i / (4 * x) )* yscale,2);
 				displayObjects.push(a);		
 				potato = a;			
+			break;
+			case 0x00ff00:
+				var a = new Checkpoint(((i / 4) % x  + .5)* xscale+1,Math.floor(i / (4 * x) )* yscale,4);
+				a.y += 87;
+				++checkpointAmount;
+				checkpoints[checkpointAmount] = a;
+				displayObjects.push(a);
+			break;
+			case 0xb01414:
+				var a = new Powerup(((i / 4) % x  + .5)* xscale+1,Math.floor(i / (4 * x) )* yscale,6);
+				displayObjects.push(a);		
+				blitzgun = a;	
+			break;
+			case 0xff6600:
+				var a = new Imp(((i / 4) % x  + .5)* xscale,Math.floor(i / (4 * x) )* yscale,7,.1,12,30);
+				displayObjects.push(a);		
+				enemies.push(a);
+				stuff.push(a);	
+			break;
+			case 0x80390a:
+				var a = new Gate(((i / 4) % x  + .5)* xscale+1,Math.floor(i / (4 * x) )* yscale);
+				gates.push(a);
+				displayObjects.push(a);
 			break;
 		}
 	}
@@ -78,4 +113,7 @@ function destroyOldGame(){
 	stuff = new Array();
 	bezi = false;
 	displayObjects = new Array();
+	walls = new Array();
+	wallssorted = new BST2();
+	wincondition = 0;
 }

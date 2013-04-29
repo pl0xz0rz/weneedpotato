@@ -7,9 +7,24 @@ var storyScreen = document.getElementById("story");
 var hra = document.getElementById("hra");
 var vyhra = document.getElementById("vyhra");
 var prehra = document.getElementById("prehra");
+var tehWinz = document.getElementById("tehWinz");
+var noteone = document.getElementById("noteone");
+var notetwo = document.getElementById("notetwo");
+
+var pewpew = document.getElementById("pewpew");
+var omnom = document.getElementById("omnom");
+var bzzt = document.getElementById("bzzt");
 
 
+var lvls = new Array();
+
+var lvl0=document.getElementById("lvl0"); 
 var lvl1=document.getElementById("lvl1"); 
+var lvl2=document.getElementById("lvl2");
+
+lvls[0]=lvl0;
+lvls[1]=lvl1;
+lvls[2]=lvl2;
 
 var stuff = new Array();
 
@@ -32,15 +47,33 @@ var camera = new AxisAlignedBoundingBox(0,0,600,400);
 
 var playtime;
 var inventory = new Array(10);
+var activeitem = 0;
 var hitpoints;
 var mana;
+var score = 0;
 
 var walls = new Array();
 var wallssorted = new BST2(1000);
 var hittestArray = new Array();
 var enemies = new Array();
+var food = new Array();
+
+var bullets = new Array();
+var bulletAmount = 0;
+
+var gates = new Array();
+var lastgate = 0;
 
 var potato;
+var blitzgun;
+
+var wincondition = 0;
+
+var currentlvl=0;
+var checkpointid=0;
+var numberlevels = 2;
+var checkpoints = new Array();
+var checkpointAmount = 0;
 
 $(document).ready(function(){
 	$(window).keydown(function(event){
@@ -70,12 +103,19 @@ function moveLevelUp(){
 	storyScreen.style.display="none";
     prehra.style.display="none";
     vyhra.style.display="none";	
+    tehWinz.style.display="none";
 }
 
 function magicPushbutton(){
-		nacitajLevel(40,30,lvl1,150,150);
+		checkpoints = new Array();
+		checkpointAmount = 0;
+		currentlvl = 0;
+		score = 0;
+		inventory[0] = false;
+		nacitajLevel(lvls[currentlvl].width,lvls[currentlvl].height,lvls[currentlvl],150,150);
 		introMenu.style.display="none";
 		hra.style.display="block";
+		playtime = 0;
 }
 
 function vyhraj(){
@@ -83,6 +123,8 @@ function vyhraj(){
 	hra.style.display="none";
 	vyhra.style.display="block";
 	endtime.innerHTML = playtime;
+	endscore.innerHTML = score;
+	if(score < 1000) {epicwin.style.display = "block"; badending.style.display = "none"};
 }
 
 function prehraj(){
@@ -106,5 +148,30 @@ function switchTrack(to){
 }
 
 function win(){
-vyhraj();
+	if(++currentlvl > numberlevels) {		vyhraj()} else {
+		checkpointid=0;
+		destroyOldGame();
+		hra.style.display="none";
+		tehWinz.style.display="block";
+		inventory[0] = false;
+	};
+}
+
+function tryagain(){
+		nacitajLevel(lvls[currentlvl].width,lvls[currentlvl].height,lvls[currentlvl],150,150);
+		
+		introMenu.style.display="none";
+  		prehra.style.display="none";
+		vyhra.style.display="none";	
+		tehWinz.style.display="none";
+		hra.style.display="block";
+		protagonist.po.x = checkpoints[checkpointid].x;
+		protagonist.po.y = checkpoints[checkpointid].y;
+}
+
+function resume(){
+	noteone.style.display="none";
+	notetwo.style.display="none";
+	hra.style.display="block";
+	bezi = true;
 }

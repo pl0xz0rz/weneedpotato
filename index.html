@@ -7,8 +7,14 @@
 </head>
 <body id="obrazovka">
 
-<audio autoplay="autoplay" id="uvodhudba" loop="loop">
-<source src="weneedpotato.ogg" type="audio/ogg" />
+<audio id="pewpew">
+<source src="pewpew.ogg" type="audio/ogg" />
+</audio>
+<audio id="omnom">
+<source src="omnom.ogg" type="audio/ogg" />
+</audio>
+<audio id="bzzt">
+<source src="bzzt.ogg" type="audio/ogg" />
 </audio>
 
 <div id="hra" class="velkyobdlznik">
@@ -18,6 +24,10 @@ Time:
 <span id="playtimespan">0</span>
 Hitpoints:
 <span id="hitpointspan">0</span>
+Mana:
+<span id="manaspan">0</span>
+Score:
+<span id="scorespan">0</span>
 
 </div>
 
@@ -27,13 +37,18 @@ Hitpoints:
 <div id="resourcesdiv">
 
 
-
+<img src="level0.png" id="lvl0">
 <img src="level1.png" id="lvl1">
+<img src="level2.png" id="lvl2">
 
  <img src="pentagrambox.png" id="pentagrambox">
  <img src="tempfloatingisland.png" id="tempfloatingisland"/>
  <img src="spud.png" id="spud">
  <img src="tripod.png" id="tripod">
+ <img src="checkpointon.png" id="checkpointon">
+ <img src="checkpointoff.png" id="checkpointoff">
+ <img src="blitzgun.png" id="blitzgunimg">
+ <img src="imp.png" id="impimg">
 
 </div>
 
@@ -48,7 +63,8 @@ Hitpoints:
  </div>
  <div>
  It took you <span id="endtime"> </span> seconds and cost the world the equivalent of $<span id="endscore"></span> .
-
+ <div id="epicwin">You are a true winner, by costing less than $1k.</div>
+ <div id="badending">You know you can do better.</div>
  </div>
  <div id="esteRazW" onClick="moveLevelUp()" class="tlacidlo">Play again?</div>
  <img src="mutebutton.png" alt="Teh mute button" onClick="muteButton();"/>
@@ -56,9 +72,9 @@ Hitpoints:
 
 <div id="prehra" class="velkyobdlznik">
  <h2> Game over </h2>
- <div> You have failed. <div onClick="tryagain()" class="tlacidlo">Try again from last checkpoint? </div></div>
+ <div> You have failed. </div><br><br><br><br><br><div onClick="tryagain()" class="tlacidlo">Try again from last checkpoint? </div>
 
- <div id="esteRazL" onClick="moveLevelUp()" class="tlacidlo">Play again?</div>
+ <div id="esteRazL" onClick="moveLevelUp()" class="tlacidlo">Give up?</div>
  <img src="mutebutton.png" alt="Teh mute button" onClick="muteButton();"/>
 </div>
 
@@ -68,6 +84,33 @@ Hitpoints:
  <div id="newGameStart" class="tlacidlo" onClick="magicPushbutton()"> Play </div>
  <div id="showStory" class="tlacidlo" onClick="zobrazPribeh()"> Story</div>
  <img src="mutebutton.png" alt="Teh mute button" onClick="muteButton();"/>
+</div>
+
+<div id="tehWinz" class="velkyobdlznik">
+ <h2>WIN </h2>
+ <img src="spud.png" alt="pl0xz0rz"/>
+<br>
+ This is a potato.
+ <div id="newGameStart" class="tlacidlo" onClick="tryagain()"> Continue? </div>
+</div>
+
+<div id="noteone" class="velkyobdlznik">
+<h2>Tutorial, part 1</h2>
+<div>You control a fairy with mouse. The fairy can fly, but loses hitpoints from colliding with walls. Also, because the legendary potato got stolen, the fairy is shungry. Get to the potato before you starve to death. You are a minimalist, and so you vow not to collect items, kill enemies, or eat meat.</div>
+<img src="tripod.png">
+<div>This is a tripod monster. Equipped with a magical gun to protect the stolen potato, so other people don't steal it. They stand still on the ground, waiting until an intruder comes close, then they fire a quick burst of bullets.</div>
+<img src="blitzgun.png">
+<div>This is a weapon, that can be used to get rid of enemies. Simply get close to them, and click the left mouse button to throw magical lightning. You can eat killed enemies to restore some lost health by hovering over them.</div>
+<div class="tlacidlo" onClick="resume()">Continue</div>
+</div>
+
+<div id="notetwo" class="velkyobdlznik">
+<h2>Tutorial, part 2</h2>
+<img src="imp.png">
+<div>This is an imp, they are used as soliders for their cheap price. They actively run close to you, and they fire more accurately than the tripods. At least they can't durvive as much punishment as the tripods.</div>
+<img src="checkpointoff.png">
+<div>These checkpoints let you save progress, you revive at the last checkpoint visited.</div>
+<div class="tlacidlo" onClick="resume()">Continue</div>
 </div>
 
 <div id="story" class="velkyobdlznik">

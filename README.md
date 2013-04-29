@@ -6,6 +6,10 @@ weneedpotato
 
 This is my LD26 game, We Need Potato
 
-So far, it has graphics from my LD25 game, and only 1 level.
+This version is playable, and it features a tutorial, three levels and two endings.
 
-Get the potato without touching walls. Now featuring some tripods.
+Code was made from scratch. 
+
+Sounds were made using bfxr.
+
+
