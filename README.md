@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 =======
 weneedpotato
@@ -8,8 +8,8 @@ This is my LD26 game, We Need Potato
 
 This version is playable, and it features a tutorial, three levels and two endings.
 
-Code was made from scratch. 
+Controls: Mouse only, the player character follows the cursor, click to attack after obtaining a weapon.
 
-Sounds were made using bfxr.
+Sound effects were made using bfxr.
 
 
